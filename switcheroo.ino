@@ -8,7 +8,7 @@
 
 #define ADVERTISEMENT "Switcheroo"
 
-#define CUTOFF 2000
+#define CUTOFF 50
 
 #define LED_PIN 2
 
@@ -163,7 +163,7 @@ int distance() {
   digitalWrite(TRIG_PIN, LOW);
   delayMicroseconds(2);
   digitalWrite(TRIG_PIN, HIGH);
-  delayMicroseconds(5);
+  delayMicroseconds(100);
   digitalWrite(TRIG_PIN, LOW);
 
   long distance = pulseIn(ECHO_PIN, HIGH);
@@ -179,7 +179,7 @@ int distance() {
 bool debounce = false;
 
 void loop() {
-  long dist = distance();
+  long dist = distance() / 58;
 
   if (debounce) {
     if (dist > CUTOFF) {
